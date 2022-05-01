@@ -1,0 +1,12 @@
+.title{
+    margin-bottom: 20px;
+    color: rgb(250, 250, 250);
+}
+
+.title:first-child{
+    padding-top: 20px;
+}
+
+.title:not(:first-child){
+    margin-top: 20px;
+}
