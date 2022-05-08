@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export default function ContactListItem ({name,number,id,onDelete}){
 // const dispatch = useDispatch()
-
+// console.log(name);
     return <li  className={s.item}>{name}:{number} 
     <button onClick={() => onDelete(id)} className={s.button}>delete</button>
     </li> 

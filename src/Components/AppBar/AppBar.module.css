@@ -1,0 +1,25 @@
+
+
+.link{
+    display: inline-block;
+    padding: 7px;
+    font-weight: 500;
+    font-size: 18px;
+    color: wite;
+}
+
+.active {
+    composes: link;
+    color : rgb(118, 171, 252)
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(65, 65, 66, 0.342);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+padding-left: 10px;
+border-bottom: 1px solid white;
+}
+
+

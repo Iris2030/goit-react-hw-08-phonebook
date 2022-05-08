@@ -1,19 +1,14 @@
 import { useState } from "react";
 import s from "./Form.module.css";
 import PropTypes from "prop-types";
-// import { useSelector,useDispatch } from "react-redux";
-// import {addContact} from '../../redux/actions'
 import {useAddContactMutation} from "../../redux/slice";
 import Notiflix from "notiflix";
-import Loader from "../Loader/Loader";
+
 
  export default function Form({contacts}) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [addContact,{isLoading}] = useAddContactMutation()
-
-  // const contacts = useSelector(state =>state.contacts.items)
-  // const dispatch = useDispatch()
 
 
   const handleInput = (event) => {
@@ -35,7 +30,6 @@ import Loader from "../Loader/Loader";
 
   const handleSubmit = (event) => {
     event.preventDefault();
-console.log(contacts);
     const contactNames = contacts.map((contact) => contact.name);
 
     if (contactNames.includes(event.currentTarget.name.value)) {
@@ -45,7 +39,7 @@ console.log(contacts);
     }
 
     // dispatch(addContact(name, number))
-    addContact(name, number)
+    addContact({name, number})
     Notiflix.Notify.success(`${name} added to contacts`);
     resetForm();
   };

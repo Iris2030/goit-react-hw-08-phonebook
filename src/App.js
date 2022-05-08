@@ -1,43 +1,38 @@
-import { lazy, Suspense } from 'react';
-import { useSelector } from 'react-redux';
+import {Suspense, useEffect, lazy} from 'react';
 import './App.css';
-// import Form from './Components/Form/Form';
-// import ContactList from './Components/ContactList/ContactList';
-// import Filter from './Components/Filter/Filter';
-import Container from './Components/Container/Container';
-import s from './App.module.css';
-import { useFetchContactsQuery } from './redux/slice';
-import { FaRegAddressBook } from 'react-icons/fa';
-const Form = lazy(() => import('./Components/Form/Form'))
-const ContactList = lazy(() => import('./Components/ContactList/ContactList'))
-const Filter = lazy(() => import('./Components/Filter/Filter'))
+import { Routes,Route } from 'react-router-dom';
+import AppBar from './Components/AppBar/AppBar';
+import { useDispatch } from 'react-redux';
+import { fetchCurrentUser } from './Components/Auth/Auth-operations';
+import PrivateRoute from './Components/PrivatRoute/PrivateRoute';
 
-
-
-
+const HomePage = lazy(() => import('./Components/HomePage/HomePage'))
+const LoginPage = lazy(() => import('./Components/LoginPage/LoginPage'))
+const RegisterPage = lazy(() => import('./Components/RegisterPage/RegisterPage'))
+const ContactsPage = lazy(() => import('./Components/ContactsPage'))
 
 export default function App() {
-  const { data, error, isFetching } = useFetchContactsQuery()
 
+const dispatch = useDispatch()
 
-const contacts = useSelector(state =>  state.contacts)
-
-  // useEffect(() => {
-  //   localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts]);
-
+useEffect(()=>{
+  dispatch(fetchCurrentUser())
+},[dispatch])
 
   return (
- 
-    <Container>
-      <h1 className={s.title}>Phone Book <FaRegAddressBook style={{ width: 25, height: 25, marginLeft: '10px'}}/></h1>
-      <Form contacts={data}/>
+    <>
+    <AppBar/>
+    <Suspense fallback={<p>Loading...</p>}>
+      <Routes>
+     <Route path='/' element={<HomePage/>}/>
+     <Route path='/contacts' element={<PrivateRoute navigateTo='/login'><ContactsPage/></PrivateRoute>} />
+     <Route path='/register' element={<RegisterPage/>}/>
+     <Route path='/login' element={<LoginPage/>}/>
 
-      <h2 className={s.title}>Contacts</h2>
-      <Filter />
-      <ContactList data={data}/>
-    </Container>
 
+      </Routes>
+      </Suspense>
+    </>
   );
 }
 
