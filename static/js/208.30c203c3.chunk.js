@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[208],{3208:function(e,n,r){r.r(n),r.d(n,{default:function(){return o}});var t=r(5048),u=r(184),a={header:{color:"white",paddingLeft:"500px",paddingTop:" 250px"}};function o(){var e=(0,t.v9)((function(e){return e.auth.user.name}));return(0,u.jsxs)("h1",{style:a.header,children:["Welcome to your Phone book ",e]})}}}]);
+//# sourceMappingURL=208.30c203c3.chunk.js.map
