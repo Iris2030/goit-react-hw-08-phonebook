@@ -5,7 +5,7 @@ import AppBar from './Components/AppBar/AppBar';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from './Components/Auth/Auth-operations';
 import PrivateRoute from './Components/PrivatRoute/PrivateRoute';
-
+import PublicRoute from './Components/PublicRoute/PublicRoute';
 const HomePage = lazy(() => import('./Components/HomePage/HomePage'))
 const LoginPage = lazy(() => import('./Components/LoginPage/LoginPage'))
 const RegisterPage = lazy(() => import('./Components/RegisterPage/RegisterPage'))
@@ -24,10 +24,10 @@ useEffect(()=>{
     <AppBar/>
     <Suspense fallback={<p>Loading...</p>}>
       <Routes>
-     <Route path='/' element={<HomePage/>}/>
-     <Route path='/contacts' element={<PrivateRoute navigateTo='/login'><ContactsPage/></PrivateRoute>} />
-     <Route path='/register' element={<RegisterPage/>}/>
-     <Route path='/login' element={<LoginPage/>}/>
+     <Route path='/' element={<PublicRoute><HomePage/></PublicRoute>}/>
+     <Route path='/contacts'  element={<PrivateRoute navigateTo='/login'><ContactsPage/></PrivateRoute>} />
+     <Route path='/register' element={<PublicRoute restricted><RegisterPage/></PublicRoute>}/>
+     <Route path='/login' element={<PublicRoute restricted><LoginPage/></PublicRoute>}/>
 
 
       </Routes>
