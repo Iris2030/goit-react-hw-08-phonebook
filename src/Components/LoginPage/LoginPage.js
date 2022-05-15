@@ -1,9 +1,16 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { logIn } from "../Auth/Auth-operations"
+import { useSelector } from "react-redux"
 import s from './LoginPage.module.css'
 
+
+
 export default function LoginPage(){
+// const userEmail = useSelector(state => state.auth.user.email)
+
+// console.log(userEmail);
+
     const dispatch = useDispatch()
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -28,6 +35,8 @@ export default function LoginPage(){
 
 function handleSubmit(event){
     event.preventDefault();
+    console.log(event.target.email.value);
+
     dispatch(logIn({email, password}))
     resetForm()
 
