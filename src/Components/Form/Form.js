@@ -33,7 +33,7 @@ import Notiflix from "notiflix";
     const contactNames = contacts.map((contact) => contact.name);
 
     if (contactNames.includes(event.currentTarget.name.value)) {
-      alert(`${event.currentTarget.name.value} is alredy in contacts`);
+      Notiflix.Notify.failure(`${event.currentTarget.name.value} is alredy in contacts`);
       resetForm();
       return;
     }

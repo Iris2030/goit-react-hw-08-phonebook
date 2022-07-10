@@ -34,6 +34,9 @@ export default function RegisterPage(){
 function handleSubmit(event){
     event.preventDefault();
     dispatch(register({name,email,password}))
+    if(name && email && password){
+// alert("you succesfully registered")
+    }
     resetForm()
 
 }
@@ -69,6 +72,7 @@ return(
         onChange={handleInput}
         type="mail"
         name="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         required/>
 
         <label className={s.label}>password</label>
@@ -78,6 +82,7 @@ return(
         onChange={handleInput}
         type="text"
         name="password"
+        pattern=".{8,}" title="Eight or more characters"
         required/>
         
         <button className={s.button} type="submit" >register</button>
